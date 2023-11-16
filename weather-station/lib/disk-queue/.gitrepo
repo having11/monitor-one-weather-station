@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/particle-iot/disk-queue.git
+	branch = release/v1.0.1
+	commit = c431764db4b672411a09080d9056942cd8ce80a8
+	parent = 79c0ab02a3dfa108806305e60d49d170cbc33c6b
+	method = merge
+	cmdver = 0.4.6

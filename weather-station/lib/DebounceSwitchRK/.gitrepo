@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/rickkas7/DebounceSwitchRK.git
+	branch = main
+	commit = 79521b2eaa29cf3dff28a8933f58a2cc586e6664
+	parent = fea13cd140004a4278cbdc040c9526aea252836e
+	method = merge
+	cmdver = 0.4.6

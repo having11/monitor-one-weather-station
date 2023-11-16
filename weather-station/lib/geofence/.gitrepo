@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/particle-iot/geofence.git
+	branch = release/v1.1.0
+	commit = b7d5bee508ec14a2e1b5276caa1c8d30df790526
+	parent = 884c72d10c69df3b9541018bd0cfa0216c6e9ddc
+	method = merge
+	cmdver = 0.4.6

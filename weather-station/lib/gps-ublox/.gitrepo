@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/particle-iot/gps-ublox.git
+	branch = release/v1.3.0
+	commit = 6ccef3245508143b92100b114926d9ceff07508f
+	parent = 2f4ec8ff625ca0a50f9fb40be0c66edf261223fc
+	method = merge
+	cmdver = 0.4.6

@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/memfault/particle-firmware-library.git
+	branch = main
+	commit = 5cfbeb3b7e4d5abbc6bf9be6ad7d17583ddf577f
+	parent = fb881448b39fdb700d6658aea3056577cf0753a4
+	method = merge
+	cmdver = 0.4.6

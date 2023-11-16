@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/particle-iot/fw-config-service.git
+	branch = release/v1.2.2
+	commit = 3865fb7bfb07373d0dd2affb1ececdf8702bf627
+	parent = 331bcc14ad1c1405c24a71c9033981a38d7fa677
+	method = rebase
+	cmdver = 0.4.6

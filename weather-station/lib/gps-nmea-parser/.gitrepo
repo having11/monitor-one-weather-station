@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/particle-iot/gps-nmea-parser.git
+	branch = release/v1.2.0
+	commit = 7028a2db70e56545bb229ed76f43d6304b935483
+	parent = 68c68a91e1b756c12d96c2b03ed9980af02f9f30
+	method = merge
+	cmdver = 0.4.6

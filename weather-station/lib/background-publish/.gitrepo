@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/particle-iot/background-publish.git
+	branch = release/v1.1.0
+	commit = 5be7e697673eec96d590dc867432f34b46063378
+	parent = 63a643f9922fb2e86e36ecb6a21d7fcbd59f16f9
+	method = merge
+	cmdver = 0.4.6

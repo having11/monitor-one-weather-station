@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/particle-iot/can-mcp25x.git
+	branch = release/v1.7.0
+	commit = d05ecc53a1d965feef7a88e50d0645340401cba5
+	parent = 8817ba58041571c969b2ab3319890c2ac6e23393
+	method = merge
+	cmdver = 0.4.6
