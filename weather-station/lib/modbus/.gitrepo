@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/particle-iot/ParticleModbusClient.git
+	branch = release/v0.0.2
+	commit = 5a358652ad7347ef2c2d7f12a3c7f9063aff7bb7
+	parent = dd55a5e2da051c1e0446cd7babdf69f6b9177e60
+	method = merge
+	cmdver = 0.4.6

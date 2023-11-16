@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/particle-iot/particle-led.git
+	branch = release/v1.0.0
+	commit = c5023d5f54c550fe5cca3aa2acb55286398d4c17
+	parent = 49f1fb0184f923b56b23f174b346f80a61b6cf83
+	method = merge
+	cmdver = 0.4.6

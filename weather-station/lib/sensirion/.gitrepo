@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/particle-iot/sensirion.git
+	branch = release/v1.1.0
+	commit = 2de185180a02f2421ff361d6f5b71d8363e987a7
+	parent = 96193a0e5971991d8c0dfc33e03eb8aeab5fcec7
+	method = merge
+	cmdver = 0.4.6
