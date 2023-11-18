@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+// #define BME680_DEBUG
+
 #include "Particle.h"
 #include "edge.h"
 #include "Adafruit_BME680.h"
@@ -51,22 +53,29 @@ typedef struct
     time_t lastWriteTime;
 } SensorData_t;
 
-bool readBmeData(SensorData_t *);
-void onPrepareForSleep(TrackerSleepContext);
-void onDeviceWake(EdgeSleepContext);
+bool readSensorData(SensorData_t *);
+void myLocationGenerationCallback(JSONWriter &writer, LocationPoint &point, const void *context);
 
 Adafruit_BME680 bme;
-SensorData_t data;
+SensorData_t data = { .temperatureC = -1.0f };
 Adafruit_ADT7410 tempsensor;
+
+double temperatureInC;
+bool failure;
 
 void setup()
 {
+    Serial.begin(115200);
+    Wire.begin();
     Edge::instance().init();
+
+    TrackerLocation::instance().regLocGenCallback(myLocationGenerationCallback);
 
     if (!bme.begin())
     {
         Log.error("Failed to start BME680");
         Particle.publish("Log", "Failed to start BME680");
+        failure = true;
     }
 
     bme.setTemperatureOversampling(BME680_OS_8X);
@@ -74,6 +83,8 @@ void setup()
     bme.setPressureOversampling(BME680_OS_4X);
     bme.setIIRFilterSize(BME680_FILTER_SIZE_3);
     bme.setGasHeater(320, 150); // 320*C for 150 ms
+
+    Particle.variable("fail", &failure, BOOLEAN);
 
     if (!tempsensor.begin())
     {
@@ -83,10 +94,8 @@ void setup()
 
     Log.info("SENSORS INITIALIZED");
 
-    TrackerSleep::instance().registerSleepPrepare(onPrepareForSleep);
-    TrackerSleep::instance().registerWake(onDeviceWake);
-
-    Particle.publish("Ready", "System is ready");
+    // TrackerSleep::instance().registerSleepPrepare(onPrepareForSleep);
+    // TrackerSleep::instance().registerWake(onDeviceWake);
 }
 
 void loop()
@@ -98,6 +107,7 @@ bool readSensorData(SensorData_t *senData)
 {
     if (!bme.performReading())
     {
+        // failure = true;
         return false;
     }
 
@@ -107,43 +117,17 @@ bool readSensorData(SensorData_t *senData)
     senData->gasResistanceKOhms = bme.gas_resistance / 1000.0;
     senData->altitudeM = bme.readAltitude(SeaLevelPressureHPa);
 
-    LocationPoint point;
-    Edge::instance().locationService.getLocation(point);
-    senData->lastWriteTime = point.epochTime;
-
-    float accurateTemperatureC = tempsensor.readTempC();
-    senData->temperatureC = accurateTemperatureC;
-
     return true;
 }
 
-void onPrepareForSleep(TrackerSleepContext context)
+void myLocationGenerationCallback(JSONWriter &writer, LocationPoint &point, const void *context)
 {
-    TrackerSleep::instance().wakeAtMilliseconds(System.millis() + WeatherStationConstants::sleepTime.count());
-}
-
-void onDeviceWake(EdgeSleepContext context)
-{
-    if (context.reason == EdgeSleepReason::WAKE &&
-        TrackerSleep::instance().isFullWakeCycle())
-    {
-        readSensorData(&data);
-        String formattedData = String::format(
-        "{"
-            "\"temperatureInC\":%.2f,"
-            "\"humidityPercentage\":%.2f,"
-            "\"pressureHpa\":%.2f,"
-            "\"gasResistanceKOhms\":%.2f,"
-            "\"approxAltitudeInM\":%.2f,"
-            "\"lastGoodReading\": %ld"
-        "}",
-        data.temperatureC,
-        data.relativeHumidity,
-        data.pressureHPa,
-        data.gasResistanceKOhms,
-        data.altitudeM,
-        data.lastWriteTime);
-
-        Particle.publish("SensorReadings", formattedData);
-    }
+    readSensorData(&data);
+    writer.name("weather").beginObject();
+    writer.name("temperatureC").value(data.temperatureC);
+    writer.name("humidity").value(data.relativeHumidity);
+    writer.name("pressureHPa").value(data.pressureHPa);
+    writer.name("gasResKOhm").value(data.gasResistanceKOhms);
+    writer.name("altitudeM").value(data.altitudeM);
+    writer.endObject();
 }
