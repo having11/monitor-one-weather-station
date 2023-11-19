@@ -1,19 +1,4 @@
-/*
- * Copyright (c) 2023 Particle Industries, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
+// Uncomment for detailed BME680 debug info
 // #define BME680_DEBUG
 
 #include "Particle.h"
@@ -60,7 +45,6 @@ Adafruit_BME680 bme;
 SensorData_t data = { .temperatureC = -1.0f };
 Adafruit_ADT7410 tempsensor;
 
-double temperatureInC;
 bool failure;
 
 void setup()
@@ -93,9 +77,6 @@ void setup()
     }
 
     Log.info("SENSORS INITIALIZED");
-
-    // TrackerSleep::instance().registerSleepPrepare(onPrepareForSleep);
-    // TrackerSleep::instance().registerWake(onDeviceWake);
 }
 
 void loop()
@@ -107,7 +88,6 @@ bool readSensorData(SensorData_t *senData)
 {
     if (!bme.performReading())
     {
-        // failure = true;
         return false;
     }
 
